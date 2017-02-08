@@ -102,7 +102,7 @@ class Home extends Component {
                 textTransform: 'uppercase'
               }}
             >
-              It's commitment showtime!
+              {"It's commitment showtime!"}
             </h1>
 
             <p
