@@ -147,8 +147,6 @@ class Home extends Component {
   }
 
   render () {
-    const {users} = this.props.match
-
     return (
       <div
         style={{
