@@ -4,6 +4,7 @@ import autoBind from 'react-autobind'
 
 import * as matchActions from '../actions/match'
 import colors from '../utils/colors'
+import Img from '../components/Img'
 
 class Home extends Component {
   constructor () {
@@ -63,12 +64,15 @@ class Home extends Component {
       >
         <div
           style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
             width: 200,
             height: 200,
             backgroundColor: colors.gray.lightest
           }}
         >
-          <img
+          <Img
             style={{
               display: 'block',
               width: '100%',
