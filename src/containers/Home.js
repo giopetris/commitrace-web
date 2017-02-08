@@ -88,6 +88,22 @@ class Home extends Component {
   }
 
   render () {
+    const {users} = this.props.match
+    const inputPlaceholder = users.length === 0
+      ? 'Type your username on GitHub'
+      : 'Type another username on GitHub'
+    const addUserButtonText = () => {
+      if (users.length === 0) {
+        return 'Add yourself'
+      }
+
+      if (users.length === 3) {
+        return 'Add one last person'
+      }
+
+      return 'Add someone else'
+    }
+
     return (
       <div
         style={{
@@ -130,10 +146,10 @@ class Home extends Component {
                     width: '300px'
                   }}
                   className="pt-input pt-large"
-                  placeholder="What's your GitHub's username?"
+                  placeholder={inputPlaceholder}
                 />
                 <button className="pt-button pt-intent-primary pt-large">
-                  Add yourself
+                  {addUserButtonText()}
 
                   <span className="pt-icon-standard pt-icon-plus pt-align-right" />
                 </button>
