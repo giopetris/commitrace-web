@@ -36,6 +36,8 @@ class Home extends Component {
     const {removeUser} = this.props
 
     removeUser(user)
+
+    this.usernameInput.focus()
   }
 
   renderUser (user) {
