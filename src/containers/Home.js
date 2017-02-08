@@ -14,7 +14,8 @@ class Home extends Component {
 
   static propTypes = {
     match: PropTypes.object,
-    addUser: PropTypes.func
+    addUser: PropTypes.func,
+    removeUser: PropTypes.func
   }
 
   addUser (event) {
@@ -28,8 +29,10 @@ class Home extends Component {
     addUser(user)
   }
 
-  removeUser (event) {
+  removeUser (user) {
+    const {removeUser} = this.props
 
+    removeUser(user)
   }
 
   renderUser (user) {
@@ -43,7 +46,7 @@ class Home extends Component {
           textAlign: 'center'
         }}
         className="pt-card pt-interactive"
-        onClick={this.removeUser}
+        onClick={() => this.removeUser(user)}
       >
         <img
           style={{
