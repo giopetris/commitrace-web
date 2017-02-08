@@ -89,7 +89,7 @@ class Home extends Component {
     )
   }
 
-  render () {
+  renderForm () {
     const {users} = this.props.match
     const inputPlaceholder = users.length === 0
       ? 'Type your username on GitHub'
@@ -105,6 +105,49 @@ class Home extends Component {
 
       return 'Add someone else'
     }
+    const isFormDisabled = users.length === 4
+
+    return (
+      <form onSubmit={this.addUser}>
+        <div className="pt-control-group">
+          <input
+            ref={input => { this.usernameInput = input }}
+            style={{
+              flex: 1
+            }}
+            className="pt-input pt-large"
+            placeholder={inputPlaceholder}
+            disabled={isFormDisabled}
+          />
+          <button
+            className="pt-button pt-intent-primary pt-large"
+            disabled={isFormDisabled}
+          >
+            {addUserButtonText()}
+
+            <span className="pt-icon-standard pt-icon-plus pt-align-right" />
+          </button>
+        </div>
+      </form>
+    )
+  }
+
+  renderStartMatch () {
+    const {users} = this.props.match
+    const isButtonDisabled = users.length < 2
+
+    return (
+      <button
+        className="pt-button pt-large pt-intent-success"
+        disabled={isButtonDisabled}
+      >
+        Start race!
+      </button>
+    )
+  }
+
+  render () {
+    const {users} = this.props.match
 
     return (
       <div
@@ -145,27 +188,12 @@ class Home extends Component {
           </section>
 
           <section>
-            <form onSubmit={this.addUser}>
-              <div className="pt-control-group">
-                <input
-                  ref={input => { this.usernameInput = input }}
-                  style={{
-                    flex: 1
-                  }}
-                  className="pt-input pt-large"
-                  placeholder={inputPlaceholder}
-                />
-                <button className="pt-button pt-intent-primary pt-large">
-                  {addUserButtonText()}
-
-                  <span className="pt-icon-standard pt-icon-plus pt-align-right" />
-                </button>
-              </div>
-            </form>
+            {this.renderForm()}
           </section>
         </div>
 
         {this.renderUsers()}
+        {this.renderStartMatch()}
       </div>
     )
   }
