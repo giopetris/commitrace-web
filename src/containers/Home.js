@@ -18,6 +18,10 @@ class Home extends Component {
     removeUser: PropTypes.func
   }
 
+  componentDidMount () {
+    this.usernameInput.focus()
+  }
+
   addUser (event) {
     event.preventDefault()
 
@@ -46,29 +50,51 @@ class Home extends Component {
         key={user.name}
         style={{
           position: 'relative',
+          display: 'flex',
+          flexDirection: 'column',
+          padding: 0,
           margin: '0 2em',
+          overflow: 'hidden',
           width: 200,
           textAlign: 'center'
         }}
         className="pt-card pt-interactive"
         onClick={() => this.removeUser(user)}
       >
-        <img
+        <div
           style={{
-            width: 60,
-            height: 60
-          }}
-          src={`https://github.com/${user.name}.png`}
-          role="presentation"
-        /><br />
-
-        <b
-          style={{
-            fontSize: '1.4em'
+            width: 200,
+            height: 200,
+            backgroundColor: colors.gray.lightest
           }}
         >
-          {user.name}
-        </b>
+          <img
+            style={{
+              display: 'block',
+              width: '100%',
+              height: '100%'
+            }}
+            src={`https://github.com/${user.name}.png`}
+            role="presentation"
+          />
+        </div>
+
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center'
+          }}
+        >
+          <p
+            style={{
+              margin: '1em 0',
+              fontSize: '1.4em'
+            }}
+          >
+            {user.name}
+          </p>
+        </div>
       </div>
     )
   }
