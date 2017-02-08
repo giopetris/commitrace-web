@@ -117,14 +117,19 @@ class Home extends Component {
         }}
       >
         <div>
-          <section>
+          <section
+            style={{
+              marginBottom: '2em',
+              textAlign: 'center'
+            }}
+          >
             <h1
               style={{
-                color: colors.brand.medium,
-                textTransform: 'uppercase'
+                marginTop: 0,
+                color: colors.brand.medium
               }}
             >
-              {"It's commitment showtime!"}
+              Commitment showtime
             </h1>
 
             <p
@@ -143,7 +148,7 @@ class Home extends Component {
                 <input
                   ref={input => { this.usernameInput = input }}
                   style={{
-                    width: '300px'
+                    flex: 1
                   }}
                   className="pt-input pt-large"
                   placeholder={inputPlaceholder}
