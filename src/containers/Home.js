@@ -27,6 +27,9 @@ class Home extends Component {
     }
 
     addUser(user)
+
+    this.usernameInput.focus()
+    this.usernameInput.value = ''
   }
 
   removeUser (user) {
