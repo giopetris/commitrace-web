@@ -26,11 +26,15 @@ class Home extends Component {
   addUser (event) {
     event.preventDefault()
 
-    const {addUser} = this.props
     const user = {
       name: this.usernameInput.value
     }
 
+    if (!user.name) {
+      return
+    }
+
+    const {addUser} = this.props
     addUser(user)
 
     this.usernameInput.focus()
