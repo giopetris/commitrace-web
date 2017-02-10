@@ -16,5 +16,5 @@ export default createDevTools(
       expandActionRoot={false}
       expandStateRoot={false}
     />
-  </DockMonitor>,
+  </DockMonitor>
 )
