@@ -6,8 +6,7 @@ import * as raceConsts from '../consts/race'
 
 function* requestUsers (requestOptions) {
   try {
-    const response = yield call(api.requestUsers, requestOptions)
-    const users = yield response.json()
+    const users = yield call(api.requestUsers, requestOptions)
 
     yield put(raceActions.requestUsersSuccess(users))
   } catch (error) {
