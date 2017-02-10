@@ -8,7 +8,8 @@ class Img extends Component {
   static propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
-    placeholderColor: PropTypes.string
+    placeholderColor: PropTypes.string,
+    onError: PropTypes.func
   }
 
   static defaultProps = {
@@ -43,7 +44,7 @@ class Img extends Component {
   }
 
   render () {
-    const {placeholderColor} = this.props
+    const {placeholderColor, onError} = this.props
     const {isLoaded} = this.state
 
     return (
@@ -59,6 +60,7 @@ class Img extends Component {
 
         <img
           onLoad={() => this.setState({isLoaded: true})}
+          onError={onError}
           {...this.props}
         />
       </div>

@@ -84,6 +84,7 @@ class Home extends Component {
             }}
             src={`https://github.com/${user.name}.png`}
             role="presentation"
+            onError={() => this.removeUser(user)}
           />
         </div>
 
