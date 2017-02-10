@@ -34,9 +34,7 @@ class Home extends Component {
       name: this.usernameInput.value
     }
 
-    if (!user.name) {
-      return
-    }
+    if (!user.name) return
 
     const {addUser} = this.props
     addUser(user)
