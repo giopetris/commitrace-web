@@ -55,12 +55,12 @@ class Home extends Component {
 
   startRace () {
     const {race, push} = this.props
-    const usernames = race.users.map(({name}) => name)
+    const userNames = race.users.map(({name}) => name)
     const range = {
       from: moment().subtract(30, 'days').format('YYYY-MM-DD'),
       to: moment().format('YYYY-MM-DD')
     }
-    const query = qs.stringify({users: usernames.join(','), ...range}, {encode: false})
+    const query = qs.stringify({users: userNames.join(','), ...range}, {encode: false})
 
     push(`/race?${query}`)
   }
