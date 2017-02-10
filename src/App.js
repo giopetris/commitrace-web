@@ -41,6 +41,13 @@ const App = ({store}) => {
                   style={anchorStyles}
                 >
                   chiefGui
+                </a>, <a
+                  rel="noopener"
+                  href="https://github.com/gabrielsch"
+                  target="_blank"
+                  style={anchorStyles}
+                >
+                   gabrielsch
                 </a> and <a
                   rel="noopener"
                   target="_blank"
