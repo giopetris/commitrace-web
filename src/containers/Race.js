@@ -22,7 +22,7 @@ class Race extends Component {
     requestUsers: PropTypes.func
   }
 
-  componentWillMount () {
+  componentDidMount () {
     const {location, requestUsers} = this.props
     const parsedQueryString = qs.parse(location.search)
 
