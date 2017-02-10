@@ -1,6 +1,6 @@
 import {createStore, applyMiddleware, compose} from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import createLogger from 'redux-logger'
+import DevTools from '../utils/DevTools'
 
 import rootReducer from '../reducers'
 import rootSaga from '../sagas'
@@ -11,7 +11,8 @@ const configureStore = preloadedState => {
     rootReducer,
     preloadedState,
     compose(
-      applyMiddleware(sagaMiddleware, createLogger())
+      applyMiddleware(sagaMiddleware),
+      DevTools.instrument({maxAge: 10})
     )
   )
 

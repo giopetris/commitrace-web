@@ -22,7 +22,7 @@ class Race extends Component {
     requestUsers: PropTypes.func
   }
 
-  componentWillMount () {
+  componentDidMount () {
     const {location, requestUsers} = this.props
     const parsedQueryString = qs.parse(location.search)
 
@@ -191,8 +191,7 @@ class Race extends Component {
         <header
           style={{
             position: 'relative',
-            padding: 80,
-            paddingBottom: 0,
+            padding: '40px 80px',
             width: '100%',
             zIndex: 1
           }}
@@ -217,16 +216,13 @@ class Race extends Component {
 
         <div
           style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
             display: 'flex',
             flexDirection: 'column',
             justifyContent: 'center',
             padding: '0 80px',
             maxWidth: 960,
             width: '100%',
-            height: '100vh'
+            height: 'auto'
           }}
         >
           {fromBiggerToLowerCommiters.map(this.renderUser)}

@@ -21,8 +21,13 @@ const race = (state = INITIAL_STATE, action) => {
     ADD_USER,
       {...state, users: state.users.concat(action.user)},
 
-    REMOVE_USER,
-      {...state, users: state.users.filter(user => user.name !== action.user.name)},
+    REMOVE_USER, () => {
+      if (!action.user.name) {
+        return {...state} // TODO: figure out why we need this
+      }
+
+      return {...state, users: state.users.filter(user => user.name !== action.user.name)}
+    },
 
     REQUEST_USERS,
       {...state, isLoading: true, users: []},

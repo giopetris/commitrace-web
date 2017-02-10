@@ -1,6 +1,9 @@
 import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import autoBind from 'react-autobind'
+import { withRouter } from 'react-router-dom'
+import qs from 'qs'
+import moment from 'moment'
 
 import * as raceActions from '../actions/race'
 import colors from '../utils/colors'
@@ -14,6 +17,7 @@ class Home extends Component {
   }
 
   static propTypes = {
+    push: PropTypes.func.isRequired,
     race: PropTypes.object,
     addUser: PropTypes.func,
     removeUser: PropTypes.func
@@ -26,11 +30,13 @@ class Home extends Component {
   addUser (event) {
     event.preventDefault()
 
-    const {addUser} = this.props
     const user = {
       name: this.usernameInput.value
     }
 
+    if (!user.name) return
+
+    const {addUser} = this.props
     addUser(user)
 
     this.usernameInput.focus()
@@ -43,6 +49,18 @@ class Home extends Component {
     removeUser(user)
 
     this.usernameInput.focus()
+  }
+
+  startRace () {
+    const {race, push} = this.props
+    const userNames = race.users.map(({name}) => name)
+    const range = {
+      from: moment().subtract(30, 'days').format('YYYY-MM-DD'),
+      to: moment().format('YYYY-MM-DD')
+    }
+    const query = qs.stringify({users: userNames.join(','), ...range}, {encode: false})
+
+    push(`/race?${query}`)
   }
 
   renderUser (user) {
@@ -80,6 +98,7 @@ class Home extends Component {
             }}
             src={`https://github.com/${user.name}.png`}
             role="presentation"
+            onError={() => this.removeUser(user)}
           />
         </div>
 
@@ -170,6 +189,7 @@ class Home extends Component {
       <button
         className="pt-button pt-large pt-intent-success"
         disabled={isButtonDisabled}
+        onClick={this.startRace}
       >
         Start race!
       </button>
@@ -229,4 +249,4 @@ class Home extends Component {
 
 const mapStateToProps = ({race}) => ({race})
 
-export default connect(mapStateToProps, raceActions)(Home)
+export default withRouter(connect(mapStateToProps, raceActions)(Home))

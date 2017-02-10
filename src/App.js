@@ -8,48 +8,60 @@ import {
 import Home from './containers/Home'
 import Race from './containers/Race'
 import colors from './utils/colors'
+import DevTools from './utils/DevTools'
+
+const isDev = process.env.NODE_ENV !== 'production'
 
 const App = ({store}) => {
   return (
     <Provider store={store}>
-      <Router>
-        <div>
-          <Route exact path="/" component={Home} />
-          <Route path="/race" component={Race} />
+      <div>
+        <Router>
+          <div>
+            <Route exact path="/" component={Home} />
+            <Route path="/race" component={Race} />
 
-          <footer
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              padding: 80,
-              width: '100%',
-              textAlign: 'center'
-            }}
-          >
-            <small
+            <footer
               style={{
-                color: colors.gray.medium
+                position: 'absolute',
+                bottom: 15,
+                width: '100%',
+                textAlign: 'center'
               }}
             >
-              Written by <a
-                rel="noopener"
-                href="https://github.com/chiefGui"
-                target="_blank"
-                style={anchorStyles}
+              <small
+                style={{
+                  color: colors.gray.medium
+                }}
               >
-                chiefGui
-              </a> and <a
-                rel="noopener"
-                target="_blank"
-                href="https://github.com/CentaurWarchief"
-                style={anchorStyles}
-              >
-                CentaurWarchief
-              </a>
-            </small>
-          </footer>
-        </div>
-      </Router>
+                Written by <a
+                  rel="noopener"
+                  href="https://github.com/chiefGui"
+                  target="_blank"
+                  style={anchorStyles}
+                >
+                  chiefGui
+                </a>, <a
+                  rel="noopener"
+                  href="https://github.com/gabrielsch"
+                  target="_blank"
+                  style={anchorStyles}
+                >
+                   gabrielsch
+                </a> and <a
+                  rel="noopener"
+                  target="_blank"
+                  href="https://github.com/CentaurWarchief"
+                  style={anchorStyles}
+                >
+                  CentaurWarchief
+                </a>
+              </small>
+            </footer>
+          </div>
+        </Router>
+        {isDev && <DevTools />}
+      </div>
     </Provider>
   )
 }
