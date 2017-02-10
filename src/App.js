@@ -20,8 +20,7 @@ const App = ({store}) => {
           <footer
             style={{
               position: 'absolute',
-              bottom: 0,
-              padding: 80,
+              bottom: 15,
               width: '100%',
               textAlign: 'center'
             }}
