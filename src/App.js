@@ -10,6 +10,8 @@ import Race from './containers/Race'
 import colors from './utils/colors'
 import DevTools from './utils/DevTools'
 
+const isDev = process.env.NODE_ENV !== 'production'
+
 const App = ({store}) => {
   return (
     <Provider store={store}>
@@ -51,9 +53,7 @@ const App = ({store}) => {
             </footer>
           </div>
         </Router>
-        {process.env.NODE_ENV !== 'production' && (
-          <DevTools />
-        )}
+        {isDev && <DevTools />}
       </div>
     </Provider>
   )
