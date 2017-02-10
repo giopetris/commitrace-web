@@ -2,7 +2,7 @@ import React, {Component, PropTypes} from 'react'
 import {connect} from 'react-redux'
 import autoBind from 'react-autobind'
 
-import * as matchActions from '../actions/match'
+import * as raceActions from '../actions/race'
 import colors from '../utils/colors'
 import Img from '../components/Img'
 
@@ -14,7 +14,7 @@ class Home extends Component {
   }
 
   static propTypes = {
-    match: PropTypes.object,
+    race: PropTypes.object,
     addUser: PropTypes.func,
     removeUser: PropTypes.func
   }
@@ -104,7 +104,7 @@ class Home extends Component {
   }
 
   renderUsers () {
-    const {match} = this.props
+    const {race} = this.props
 
     return (
       <div
@@ -114,13 +114,13 @@ class Home extends Component {
           maxWidth: 1150
         }}
       >
-        {match.users.map(this.renderUser)}
+        {race.users.map(this.renderUser)}
       </div>
     )
   }
 
   renderForm () {
-    const {users} = this.props.match
+    const {users} = this.props.race
     const inputPlaceholder = users.length === 0
       ? 'Type your username on GitHub'
       : 'Type another username on GitHub'
@@ -162,8 +162,8 @@ class Home extends Component {
     )
   }
 
-  renderStartMatch () {
-    const {users} = this.props.match
+  renderStartrace () {
+    const {users} = this.props.race
     const isButtonDisabled = users.length < 2
 
     return (
@@ -221,12 +221,12 @@ class Home extends Component {
         </div>
 
         {this.renderUsers()}
-        {this.renderStartMatch()}
+        {this.renderStartrace()}
       </div>
     )
   }
 }
 
-const mapStateToProps = ({match}) => ({match})
+const mapStateToProps = ({race}) => ({race})
 
-export default connect(mapStateToProps, matchActions)(Home)
+export default connect(mapStateToProps, raceActions)(Home)

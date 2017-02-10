@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux'
-import match from './match'
+import race from './race'
 
-const rootReducer = combineReducers({match})
+const rootReducer = combineReducers({race})
 
 export default rootReducer

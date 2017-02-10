@@ -4,7 +4,10 @@ import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom'
+
 import Home from './containers/Home'
+import Race from './containers/Race'
+import colors from './utils/colors'
 
 const App = ({store}) => {
   return (
@@ -12,10 +15,47 @@ const App = ({store}) => {
       <Router>
         <div>
           <Route exact path="/" component={Home} />
+          <Route path="/race" component={Race} />
+
+          <footer
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              padding: 80,
+              width: '100%',
+              textAlign: 'center'
+            }}
+          >
+            <small
+              style={{
+                color: colors.gray.medium
+              }}
+            >
+              Written by <a
+                rel="noopener"
+                href="https://github.com/chiefGui"
+                target="_blank"
+                style={anchorStyles}
+              >
+                chiefGui
+              </a> and <a
+                rel="noopener"
+                target="_blank"
+                href="https://github.com/CentaurWarchief"
+                style={anchorStyles}
+              >
+                CentaurWarchief
+              </a>
+            </small>
+          </footer>
         </div>
       </Router>
     </Provider>
   )
+}
+
+const anchorStyles = {
+  color: colors.blue.light
 }
 
 App.propTypes = {

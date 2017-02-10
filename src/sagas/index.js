@@ -1,12 +1,31 @@
-import {fork} from 'redux-saga/effects'
+import {take, call, put, fork} from 'redux-saga/effects'
 
-function* testSaga () {
-  yield new Promise((resolve, reject) => resolve() || reject())
+import api from '../services/api'
+import * as raceActions from '../actions/race'
+import * as raceConsts from '../consts/race'
+
+function* requestUsers (requestOptions) {
+  try {
+    const response = yield call(api.requestUsers, requestOptions)
+    const users = yield response.json()
+
+    yield put(raceActions.requestUsersSuccess(users))
+  } catch (error) {
+    yield put(raceActions.requestUsersFailure(error))
+  }
+}
+
+function* watchRequestUsers () {
+  while (true) {
+    const requestOptions = yield take(raceConsts.REQUEST_USERS)
+
+    yield call(requestUsers, requestOptions)
+  }
 }
 
 function* rootSaga () {
   yield [
-    fork(testSaga)
+    fork(watchRequestUsers)
   ]
 }
 
